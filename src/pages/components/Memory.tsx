@@ -29,7 +29,7 @@ export default function Memory() {
           cards.length === 36 ? "memory-section__6x6" : "memory-section"
         }
       >
-        {cards.map((item: ICard, index: number) =>
+        {cards.map((item: string | number, index: number) =>
           flippedCards[index] ? (
             <div
               className="memory-item"
