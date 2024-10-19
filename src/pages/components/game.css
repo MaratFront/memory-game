@@ -1,0 +1,75 @@
+* {
+  perspective: 1000px;
+}
+
+.memory-header {
+  display: flex;
+  justify-content: space-between;
+  margin: 24px auto 80px;
+  width: 327px;
+}
+.memory-header__title {
+  color: #152938;
+  font-size: 24px;
+  font-weight: bold;
+}
+.memory-header__button {
+  height: 40px;
+  width: 78px;
+  font-weight: bold;
+  border-radius: 20px;
+  color: #fcfcfc;
+  background-color: #fda214;
+}
+
+.memory-section {
+  display: flex;
+  margin: auto;
+  gap: 12px;
+  width: 327px;
+  flex-wrap: wrap;
+}
+.memory-section .memory-item {
+  cursor: pointer;
+  border-radius: 60px;
+  width: 72px;
+  height: 72px;
+  border: none;
+  display: flex;
+  background-color: #304859;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  transition: 1s;
+}
+.memory-section .memory-item__active {
+  background-color: #bcced9;
+  transform-style: preserve-3d;
+  transform: rotateX(180deg);
+}
+
+.memory-section__6x6 {
+  display: flex;
+  margin: auto;
+  gap: 9px;
+  width: 327px;
+  flex-wrap: wrap;
+}
+.memory-section__6x6 .memory-item {
+  cursor: pointer;
+  border-radius: 60px;
+  width: 46px;
+  height: 46px;
+  border: none;
+  display: flex;
+  background-color: #304859;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  transition: 1s;
+}
+.memory-section__6x6 .memory-item__active {
+  background-color: #bcced9;
+  transform-style: preserve-3d;
+  transform: rotateX(180deg);
+}/*# sourceMappingURL=game.css.map */
