@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import ICard from "../interfaces/card";
 interface ICardState {
-  cards: ICard[];
+  cards: number[];
 }
 
 // Инициализируем состояние, где карты будут храниться в массиве

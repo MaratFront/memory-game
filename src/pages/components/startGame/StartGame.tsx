@@ -47,6 +47,7 @@ export default function StartGame() {
       }
     }
   }
+
   return (
     <div className="start">
       <p className="title">memory</p>

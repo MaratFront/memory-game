@@ -1,0 +1,18 @@
+.timer {
+  width: 255px;
+  height: 72px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #dfe7ec;
+  border-radius: 10px;
+}
+.timer__title {
+  color: #7191a5;
+  font-weight: bold;
+}
+.timer__value {
+  color: #304859;
+  font-weight: bold;
+  font-size: 32px;
+}/*# sourceMappingURL=timer.css.map */
