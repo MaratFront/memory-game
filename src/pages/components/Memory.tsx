@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "../components/game.css";
 import { useTypedSelector } from "../../customHooks/TypedUseSelector";
 import MemoryTimer from "./MemoryTimer/MemoryTimer";
@@ -14,6 +14,7 @@ export default function Memory() {
   const [flippedCards, setFlippedCards] = useState(
     Array(cards.length).fill(false)
   );
+  const indexCardRef = useRef<number[]>([]);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [cardValues, setCardValues] = useState<number[]>();
@@ -25,7 +26,7 @@ export default function Memory() {
     const newCards = [...flippedCards];
     newCards[index] = true;
     setFlippedCards(newCards);
-
+    indexCardRef.current.push(index);
     setTimeout(() => {
       setCardValues(e.target.textContent);
       arrRef.current.push(e.target.textContent);
@@ -39,8 +40,12 @@ export default function Memory() {
       } else if (arrRef.current.length === 2) {
         setTimeout(() => {
           arrRef.current = [];
+          newCards[indexCardRef.current[indexCardRef.current.length - 1]] =
+            false;
+          newCards[indexCardRef.current[indexCardRef.current.length - 2]] =
+            false;
+
           setRefValues([]);
-          newCards.map((_, index, arr) => (arr[index] = false));
         }, 1000);
       }
       console.log(arrRef);
