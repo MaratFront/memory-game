@@ -1,6 +1,4 @@
 import React from "react";
-import { addScore } from "../../../Store/Slices/playerScore";
-import { useTypedSelector } from "../../../customHooks/TypedUseSelector";
 interface IPlayerScore {
   userCount: number;
   score: number;

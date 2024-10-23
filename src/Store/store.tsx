@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import cardSlice from "../Store/Slices/card";
 import timerSlice from "./Slices/timer";
 import playerScoreSlice from "./Slices/playerScore";
+
 export const store = configureStore({
   reducer: {
     cards: cardSlice, // Включаем редуктор для игры

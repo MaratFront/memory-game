@@ -10,7 +10,11 @@ const playersScoreSlice = createSlice({
         state[index] += 1;
       }
     },
+    resetScore(state, action) {
+      const index = action.payload;
+      state[index] = 0;
+    },
   },
 });
-export const { addScore } = playersScoreSlice.actions;
+export const { addScore, resetScore } = playersScoreSlice.actions;
 export default playersScoreSlice.reducer;
