@@ -17,7 +17,6 @@ export default function Memory() {
   const indexCardRef = useRef<number[]>([]);
   const dispatch = useDispatch();
   const arrRef = React.useRef<string[]>([]);
-  const refItem = React.useRef<any>(null);
   const [refValues, setRefValues] = useState<string[]>([]); // Новое состояние для значений ref
 
   const handleCardClick = (index: number, e: any) => {

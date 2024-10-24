@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { add4x4Card, add6x6Card, resetState } from "../../../Store/Slices/card";
 import { useTypedSelector } from "../../../customHooks/TypedUseSelector";
+import Button from "../../../UI/Button";
 import {
   randomArr4x4,
   randomArrEmoji6x6,
@@ -14,8 +15,7 @@ import { useDispatch } from "react-redux";
 export default function StartGame() {
   const [activeColorPlayers, setActiveColorPLayers] = useState<number>(1);
   const [activeColorGrid, setActiveColorGrid] = useState<string>("4x4");
-  const [activeColorItems, setActiveColorItems] =
-    React.useState<string>("Numbers");
+  const [activeColorItems, setActiveColorItems] = useState<string>("Numbers");
   const dataArr = useTypedSelector((state) => state.cards.cards);
 
   const dispatch = useDispatch();
@@ -54,84 +54,40 @@ export default function StartGame() {
       <div className="start__menu">
         <p className="start__text">Select Theme</p>
         <div className="start__section start__section--theme">
-          <button
-            className="button"
-            onClick={() => handleActiveColorItems("Numbers")}
-            style={{
-              backgroundColor: activeColorItems === "Numbers" ? "#304859" : "",
-            }}
-          >
-            Numbers
-          </button>
-          <button
-            className="button"
-            onClick={() => handleActiveColorItems("Icons")}
-            style={{
-              backgroundColor: activeColorItems === "Icons" ? "#304859" : "",
-            }}
-          >
-            Icons
-          </button>
+          {["Numbers", "Icons"].map((item: string) => (
+            <Button
+              handleClick={() => handleActiveColorItems(item)}
+              text={item}
+              style={{
+                backgroundColor: activeColorItems === item ? "#304859" : "",
+              }}
+            />
+          ))}
         </div>
         <p className="start__text">Numbers of Players</p>
         <div className="start__section start__section--players">
-          <button
-            className="count__players button"
-            onClick={() => handleActiveColorPLayers(1)}
-            style={{
-              backgroundColor: activeColorPlayers === 1 ? "#304859" : "",
-            }}
-          >
-            1
-          </button>
-          <button
-            className="count__players button"
-            onClick={() => handleActiveColorPLayers(2)}
-            style={{
-              backgroundColor: activeColorPlayers === 2 ? "#304859" : "",
-            }}
-          >
-            2
-          </button>
-          <button
-            className="count__players button"
-            onClick={() => handleActiveColorPLayers(3)}
-            style={{
-              backgroundColor: activeColorPlayers === 3 ? "#304859" : "",
-            }}
-          >
-            3
-          </button>
-          <button
-            className="count__players button"
-            onClick={() => handleActiveColorPLayers(4)}
-            style={{
-              backgroundColor: activeColorPlayers === 4 ? "#304859" : "",
-            }}
-          >
-            4
-          </button>
+          {[1, 2, 3, 4].map((countPlayers) => (
+            <Button
+              handleClick={() => handleActiveColorPLayers(countPlayers)}
+              text={countPlayers}
+              style={{
+                backgroundColor:
+                  activeColorPlayers === countPlayers ? "#304859" : "",
+              }}
+            />
+          ))}
         </div>
         <p className="start__text">Grid Size</p>
         <div className="start__section start__section--grid">
-          <button
-            className="button"
-            onClick={() => handleActiveColorGrid("4x4")}
-            style={{
-              backgroundColor: activeColorGrid === "4x4" ? "#304859" : "",
-            }}
-          >
-            4x4
-          </button>
-          <button
-            className="button"
-            onClick={() => handleActiveColorGrid("6x6")}
-            style={{
-              backgroundColor: activeColorGrid === "6x6" ? "#304859" : "",
-            }}
-          >
-            6x6
-          </button>
+          {["4x4", "6x6"].map((grid: string) => (
+            <Button
+              style={{
+                backgroundColor: activeColorGrid === grid ? "#304859" : "",
+              }}
+              text={grid}
+              handleClick={() => handleActiveColorGrid(grid)}
+            />
+          ))}
         </div>
         <Link to="/game">
           <button className="start__game" onClick={handleStartGame}>

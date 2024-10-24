@@ -1,0 +1,28 @@
+.button {
+  width: 137px;
+  transition: 0.5s;
+  height: 40px;
+  border-radius: 26px;
+  color: #fcfcfc;
+  font-weight: bold;
+  background-color: #bcced9;
+}
+@media (min-width: 768px) {
+  .button {
+    width: 256px;
+    height: 52px;
+    border-radius: 26px;
+    font-size: 26px;
+    margin: auto;
+  }
+  .button:hover {
+    transition: 0.5s;
+    background-color: #6395b8;
+  }
+}
+@media (min-width: 1440px) {
+  .button:hover {
+    transition: 0.5s;
+    background-color: #6395b8;
+  }
+}
