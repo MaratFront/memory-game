@@ -2,9 +2,9 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { resetTimer } from "../../../../Store/Slices/timer";
-import { resetState } from "../../../../Store/Slices/card";
+import { resetState } from "../../../../Store/Slices/settingsCard";
 import { resetScore } from "../../../../Store/Slices/playerScore";
-
+import { resetCard } from "../../../../Store/Slices/card";
 //mport { resetFlippedCards } from "../../../../Store/Slices/flippedCards";
 export default function NewGame() {
   const dispatch = useDispatch();
@@ -14,8 +14,7 @@ export default function NewGame() {
     navigate("/");
     dispatch(resetState());
     dispatch(resetTimer());
-
-    //resetFlippedCards([]);
+    dispatch(resetCard());
   };
   return (
     <button className="memory-header__button" onClick={newGame}>

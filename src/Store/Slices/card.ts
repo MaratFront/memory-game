@@ -1,24 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
-interface ICardState {
-  cards: number[];
+interface ICard {
+  cards: (number | string)[];
 }
-
-// Инициализируем состояние, где карты будут храниться в массиве
-const initialState: ICardState = {
+const initialState: ICard = {
   cards: [],
 };
+
 const cardSlice = createSlice({
   name: "cards",
   initialState,
   reducers: {
-    resetState: () => initialState,
-    add4x4Card: (state, action) => {
+    addCard: (state, action) => {
       state.cards.push(...action.payload);
     },
-    add6x6Card: (state, action) => {
-      state.cards.push(...action.payload);
-    },
+    resetCard: () => initialState,
   },
 });
-export const { add4x4Card, add6x6Card, resetState } = cardSlice.actions;
+export const { addCard, resetCard } = cardSlice.actions;
 export default cardSlice.reducer;

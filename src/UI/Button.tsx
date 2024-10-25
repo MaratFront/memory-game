@@ -4,10 +4,20 @@ interface IButton extends React.BaseHTMLAttributes<HTMLButtonElement> {
   handleClick: (item?: any) => any;
   text: string | number;
   style?: React.CSSProperties;
+  className?: string;
 }
-export default function Button({ handleClick, text, style }: IButton) {
+export default function Button({
+  handleClick,
+  text,
+  style,
+  className,
+}: IButton) {
   return (
-    <button className="button" onClick={handleClick} style={style}>
+    <button
+      className={`button ${className}`}
+      onClick={handleClick}
+      style={style}
+    >
       {text}
     </button>
   );

@@ -8,6 +8,16 @@
   background-color: #bcced9;
 }
 
+.start__game {
+  margin: 32px 0 24px 0;
+  width: 279px;
+  height: 40px;
+  transition: 0.5s;
+  background-color: #fda214;
+  border-radius: 26px;
+  font-weight: bold;
+}
+
 @media (min-width: 768px) {
   .button {
     width: 256px;
@@ -20,10 +30,36 @@
     transition: 0.5s;
     background-color: #6395b8;
   }
+  .start__game {
+    width: 541px;
+    height: 70px;
+    border-radius: 56px;
+    font-size: 32px;
+    color: #fcfcfc;
+    font-weight: bold;
+    margin: 32px 0 56px 0;
+  }
+  .start__game:hover {
+    transition: 0.5s;
+    background-color: #ffb84a;
+  }
 }
 @media (min-width: 1440px) {
   .button:hover {
     transition: 0.5s;
     background-color: #6395b8;
+  }
+  .start__game {
+    width: 541px;
+    height: 70px;
+    border-radius: 56px;
+    font-size: 32px;
+    color: #fcfcfc;
+    font-weight: bold;
+    margin: 32px 0 56px 0;
+  }
+  .start__game:hover {
+    transition: 0.5s;
+    background-color: #ffb84a;
   }
 }/*# sourceMappingURL=button.css.map */
