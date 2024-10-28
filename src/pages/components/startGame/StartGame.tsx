@@ -6,6 +6,7 @@ import {
   addCardGamers,
   addCardGrid,
 } from "../../../Store/Slices/settingsCard";
+import ICardGenearator from "../../../Interfaces/ICardGenerators";
 import Button from "../../../UI/Button";
 import StartSection from "../StartSection/StartSection";
 import { useDispatch } from "react-redux";
@@ -19,45 +20,54 @@ import {
 import { Link } from "react-router-dom";
 export default function StartGame() {
   const cardsSettings = useTypedSelector((state) => state.settingsCard);
-  const cards = useTypedSelector((state) => state.cards.cards);
-  console.log(cards);
   const dispatch = useDispatch();
   const handleStartGame = () => {
-    if (cardsSettings.theme === "Icons" && cardsSettings.gridSize === "6x6") {
-      dispatch(addCard(randomArrEmoji6x6()));
-    } else if (
-      cardsSettings.theme === "Icons" &&
-      cardsSettings.gridSize === "4x4"
-    ) {
-      dispatch(addCard(randomArrEmoji4x4()));
-    } else if (
-      cardsSettings.theme === "Numbers" &&
-      cardsSettings.gridSize === "6x6"
-    ) {
-      dispatch(addCard(randomArr6x6()));
-    } else {
-      dispatch(addCard(randomArr4x4()));
+    //any завтра уберу и напишу типизацию!
+    const cardGenerators:any = {
+      Icons: {
+        "6x6": randomArrEmoji6x6,
+        "4x4": randomArrEmoji4x4,
+      },
+      Numbers: {
+        "6x6": randomArr6x6,
+        "4x4": randomArr4x4,
+      },
+    };
+
+    const generator =
+      cardGenerators[cardsSettings.theme]?.[cardsSettings.gridSize];
+
+    if (generator) {
+      dispatch(addCard(generator()));
     }
   };
+  const sectionArr = [
+    {
+      titles: ["Select Theme", "Number of PLayers", "Grid Size"],
+      selectData: [
+        ["Numbers", "Icons"],
+        [1, 2, 3, 4],
+        ["4x4", "6x6"],
+      ],
+      actions: [addCardTheme, addCardGamers, addCardGrid],
+    },
+  ];
+
   return (
     <div className="start">
       <p className="title">memory</p>
       <div className="start__menu">
-        <StartSection
-          title="Select Theme"
-          arrButtons={["Numbers", "Icons"]}
-          action={addCardTheme}
-        />
-        <StartSection
-          title="Numbers of Players"
-          arrButtons={[1, 2, 3, 4]}
-          action={addCardGamers}
-        />
-        <StartSection
-          title="Select Theme"
-          arrButtons={["4x4", "6x6"]}
-          action={addCardGrid}
-        />
+        {sectionArr.map(({ titles, selectData, actions }) =>
+          titles.map((title, index) => {
+            return (
+              <StartSection
+                title={title}
+                arrButtons={selectData[index]}
+                action={actions[index]}
+              />
+            );
+          })
+        )}
         <Link to="/game">
           <Button
             className="start__game"
