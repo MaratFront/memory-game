@@ -2,15 +2,16 @@ import { createSlice } from "@reduxjs/toolkit";
 interface ICardState {
   theme: string;
   countGamers: number;
-  gridSize: string;
+  gridSize: string | number;
 }
 
 // Инициализируем состояние, где карты будут храниться в массиве
 const initialState: ICardState = {
-  theme: "",
-  countGamers: 0,
-  gridSize: "",
+  theme: "Numbers",
+  countGamers: 1,
+  gridSize: "4x4",
 };
+
 const settingsCardSlice = createSlice({
   name: "settingsCards",
   initialState,

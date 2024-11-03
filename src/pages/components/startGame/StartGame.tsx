@@ -23,7 +23,7 @@ export default function StartGame() {
   const dispatch = useDispatch();
   const handleStartGame = () => {
     //any завтра уберу и напишу типизацию!
-    const cardGenerators:any = {
+    const cardGenerators: any = {
       Icons: {
         "6x6": randomArrEmoji6x6,
         "4x4": randomArrEmoji4x4,
