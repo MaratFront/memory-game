@@ -25,18 +25,45 @@ export default function Memory() {
   useEffect(() => {
     dispatch(resetTimer());
   }, []);
+  // const handleCardClick = (index: number) => {
+  //   setFlippedCards((prevFlippedCards) =>
+  //     prevFlippedCards.map((isFlipped, i) => (i === index ? true : isFlipped))
+  //   );
+  //   dispatch(flippedCard(cards[index]));
+
+  //   if (
+  //     flippedCardValues[flippedCardValues.length - 1] ===
+  //     flippedCardValues[flippedCardValues.length - 2]
+  //   ) {
+  //     dispatch(addScore(1));
+  //   }
+  //   if (flippedCardValues.length > 2) {
+  //     setFlippedCards((prevFlippedCards) =>
+  //       prevFlippedCards.map((isFlipped) => isFlipped)
+  //     );
+  //   }
+  // };
   const handleCardClick = (index: number) => {
+    // Если карточка уже открыта, ничего не делаем
+    if (flippedCards[index]) return;
+
+    // Открываем карточку
     setFlippedCards((prevFlippedCards) =>
       prevFlippedCards.map((isFlipped, i) => (i === index ? true : isFlipped))
     );
     dispatch(flippedCard(cards[index]));
-    console.log(flippedCardValues, cards[index]);
 
     if (
       flippedCardValues[flippedCardValues.length - 1] ===
       flippedCardValues[flippedCardValues.length - 2]
     ) {
       dispatch(addScore(1));
+    } else {
+      setFlippedCards((prevFlippedCards) =>
+        prevFlippedCards.map((isFlipped, i) =>
+          flippedCardValues.includes(cards[i]) ? false : isFlipped
+        )
+      );
     }
   };
 
