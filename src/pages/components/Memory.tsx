@@ -41,22 +41,23 @@ export default function Memory() {
     ) {
       dispatch(addScore(1));
     } else {
-      cards.find((card) => card);
-      setFlippedCards((prevCards) => {
-        const updatedCards = [...prevCards];
+      if (flippedCardValues.length === 2) {
+        setFlippedCards((prevCards) => {
+          const updatedCards = [...prevCards];
 
-        const lastFlippedCardIndex = prevCards.indexOf(
-          flippedCardValues[flippedCardValues.length - 1]
-        );
-        const secondLastFlippedCardIndex = prevCards.indexOf(
-          flippedCardValues[flippedCardValues.length - 2]
-        );
-        return [lastFlippedCardIndex, secondLastFlippedCardIndex].map(
-          (card) => {
-            return updatedCards.map((_, i) => i === card && false);
-          }
-        );
-      });
+          const lastFlippedCardIndex = updatedCards.indexOf(
+            flippedCardValues.at(-1)
+          );
+          const secondLastFlippedCardIndex = updatedCards.indexOf(
+            flippedCardValues.at(-2)
+          );
+          return [lastFlippedCardIndex, secondLastFlippedCardIndex].map(
+            (card) => {
+              updatedCards.map((_, i) => i === card && false);
+            }
+          );
+        });
+      }
     }
   };
 
