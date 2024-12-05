@@ -7,11 +7,11 @@ const flippedCardSlice = createSlice({
   initialState,
   reducers: {
     flippedCard(state, action) {
-      if (state.length < 2) {
+      if (state.length <= 2) {
         state.push(action.payload);
       } else {
         // Очищаем массив и добавляем новую карту
-        state.splice(0, state.length, action.payload);
+        state.splice(0, state.length);
       }
     },
   },

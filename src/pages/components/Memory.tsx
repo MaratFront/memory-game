@@ -25,24 +25,6 @@ export default function Memory() {
   useEffect(() => {
     dispatch(resetTimer());
   }, []);
-  // const handleCardClick = (index: number) => {
-  //   setFlippedCards((prevFlippedCards) =>
-  //     prevFlippedCards.map((isFlipped, i) => (i === index ? true : isFlipped))
-  //   );
-  //   dispatch(flippedCard(cards[index]));
-
-  //   if (
-  //     flippedCardValues[flippedCardValues.length - 1] ===
-  //     flippedCardValues[flippedCardValues.length - 2]
-  //   ) {
-  //     dispatch(addScore(1));
-  //   }
-  //   if (flippedCardValues.length > 2) {
-  //     setFlippedCards((prevFlippedCards) =>
-  //       prevFlippedCards.map((isFlipped) => isFlipped)
-  //     );
-  //   }
-  // };
   const handleCardClick = (index: number) => {
     // Если карточка уже открыта, ничего не делаем
     if (flippedCards[index]) return;
@@ -59,11 +41,22 @@ export default function Memory() {
     ) {
       dispatch(addScore(1));
     } else {
-      setFlippedCards((prevFlippedCards) =>
-        prevFlippedCards.map((isFlipped, i) =>
-          flippedCardValues.includes(cards[i]) ? false : isFlipped
-        )
-      );
+      cards.find((card) => card);
+      setFlippedCards((prevCards) => {
+        const updatedCards = [...prevCards];
+
+        const lastFlippedCardIndex = prevCards.indexOf(
+          flippedCardValues[flippedCardValues.length - 1]
+        );
+        const secondLastFlippedCardIndex = prevCards.indexOf(
+          flippedCardValues[flippedCardValues.length - 2]
+        );
+        return [lastFlippedCardIndex, secondLastFlippedCardIndex].map(
+          (card) => {
+            return updatedCards.map((_, i) => i === card && false);
+          }
+        );
+      });
     }
   };
 
