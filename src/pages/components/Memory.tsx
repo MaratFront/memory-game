@@ -25,39 +25,40 @@ export default function Memory() {
   useEffect(() => {
     dispatch(resetTimer());
   }, []);
+
   const handleCardClick = (index: number) => {
     // Если карточка уже открыта, ничего не делаем
-    if (flippedCards[index]) return;
 
     // Открываем карточку
     setFlippedCards((prevFlippedCards) =>
       prevFlippedCards.map((isFlipped, i) => (i === index ? true : isFlipped))
     );
     dispatch(flippedCard(cards[index]));
-
-    if (
-      flippedCardValues[flippedCardValues.length - 1] ===
-      flippedCardValues[flippedCardValues.length - 2]
-    ) {
+    const lastCard = flippedCardValues.at(-1);
+    const firstCard = flippedCardValues.at(-2);
+    if (lastCard === firstCard && flippedCardValues.length >= 2) {
       dispatch(addScore(1));
-    } else {
-      if (flippedCardValues.length === 2) {
+    }
+    if (
+      lastCard !== firstCard &&
+      flippedCardValues.length >= 2 &&
+      flippedCardValues.length % 2 === 0
+    ) {
+      setTimeout(() => {
         setFlippedCards((prevCards) => {
           const updatedCards = [...prevCards];
 
-          const lastFlippedCardIndex = updatedCards.indexOf(
-            flippedCardValues.at(-1)
+          const lastFlippedCardIndex = cards.findIndex(
+            (card) => card === lastCard
           );
-          const secondLastFlippedCardIndex = updatedCards.indexOf(
-            flippedCardValues.at(-2)
+          const firstFlippedCardIndex = cards.findIndex(
+            (card) => card === firstCard
           );
-          return [lastFlippedCardIndex, secondLastFlippedCardIndex].map(
-            (card) => {
-              updatedCards.map((_, i) => i === card && false);
-            }
-          );
+          updatedCards[lastFlippedCardIndex] = false;
+          updatedCards[firstFlippedCardIndex] = false;
+          return updatedCards;
         });
-      }
+      }, 0);
     }
   };
 

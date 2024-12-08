@@ -7,11 +7,13 @@ const flippedCardSlice = createSlice({
   initialState,
   reducers: {
     flippedCard(state, action) {
-      if (state.length < 2) {
-        state.push(action.payload);
-      } else {
-        state.length = 0;
-        state.push(action.payload);
+      state.push(action.payload);
+      if (state.length >= 2) {
+        if (state.length % 2 === 0) {
+          if (state.at(-1) !== state.at(-2)) {
+            state.slice(0, -2);
+          }
+        }
       }
     },
   },
