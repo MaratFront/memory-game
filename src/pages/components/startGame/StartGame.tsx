@@ -6,7 +6,6 @@ import {
   addCardGamers,
   addCardGrid,
 } from "../../../Store/Slices/settingsCard";
-import ICardGenearator from "../../../Interfaces/ICardGenerators";
 import Button from "../../../UI/Button";
 import StartSection from "../StartSection/StartSection";
 import { useDispatch } from "react-redux";

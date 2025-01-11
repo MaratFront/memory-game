@@ -1,11 +1,26 @@
-.attempts {
-  width: 255px;
-  height: 72px;
+.current-player {
+  &__title {
+    display: none;
+  }
+}
+.attempts-one {
+  width: 151px;
   display: flex;
   justify-content: space-around;
+  flex-direction: column;
   align-items: center;
   background-color: #dfe7ec;
-  border-radius: 10px;
+  border-radius: 5px;
+}
+.attempts {
+  width: 64px;
+  height: 70px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+  background-color: #dfe7ec;
+  border-radius: 5px;
   &__title {
     color: #7191a5;
     font-weight: bold;
@@ -14,5 +29,64 @@
     color: #304859;
     font-weight: bold;
     font-size: 32px;
+  }
+}
+@media (min-width: 768px) {
+  .attempts-one {
+    width: 255px;
+    display: flex;
+    height: 70px;
+    justify-content: space-around;
+    flex-direction: row;
+    align-items: center;
+    background-color: #dfe7ec;
+    border-radius: 10px;
+  }
+  .attempts {
+    width: 164px;
+    height: 80px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #dfe7ec;
+    border-radius: 10px;
+    &__title {
+      color: #7191a5;
+      font-weight: bold;
+    }
+    &__value {
+      color: #304859;
+      font-weight: bold;
+      font-size: 32px;
+    }
+  }
+}
+@media (min-width: 1440px) {
+  .current-player {
+    &__title {
+      display: block;
+      text-align: center;
+      padding-top: 23px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+  }
+  .attempts {
+    width: 255px;
+    height: 72px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #dfe7ec;
+    border-radius: 10px;
+    &__title {
+      color: #7191a5;
+      font-weight: bold;
+    }
+    &__value {
+      color: #304859;
+      font-weight: bold;
+      font-size: 32px;
+    }
   }
 }

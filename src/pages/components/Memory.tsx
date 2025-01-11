@@ -1,67 +1,100 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../components/game.css";
 import { useTypedSelector } from "../../customHooks/TypedUseSelector";
-import MemoryTimer from "./MemoryTimer/MemoryTimer";
-import { useDispatch } from "react-redux";
-import MemoryAttempts from "./MemoryAttempts/MemoryAttempts";
+import { useDispatch, useSelector } from "react-redux";
 import { resetTimer } from "../../Store/Slices/timer";
 import Header from "./Header/Header";
 import { addScore, resetScore } from "../../Store/Slices/playerScore";
-import { flippedCard } from "../../Store/Slices/flippedCard";
 import MemoryCards from "./MemoryCards/MemoryCards";
+import Players from "./Players";
+import {
+  addSelectedCard,
+  resetSelectedCard,
+} from "../../Store/Slices/selectedCard";
+import { isModalOpen } from "../../Store/Slices/modalFlag";
+import Modal from "./Modal";
+import ModalData from "./ModalData";
 export default function Memory() {
   const cards = useTypedSelector((state) => state.cards.cards);
-  const score = useTypedSelector((state) => state.playerScore);
-  const flippedCardValues = useTypedSelector((state) => state.flippedCard);
+  const players = useTypedSelector((state) => state.settingsCard.countGamers);
+  const selectedCards = useTypedSelector(
+    (state) => state.selectedCard.selectedCard
+  );
+  const [matchedCards, setMatchedCards] = useState<number[]>([]);
+  const isModalOpenFlag = useTypedSelector(
+    (state) => state.modalFlag.modalFlag
+  );
+  const { seconds, minutes } = useTypedSelector((state: any) => state.timer);
+  const onePlayerScore = useTypedSelector((state) => state.playerScore[0]);
+  const [currentPlayer, setCurrentPlayer] = useState(1);
+  const flippedCardFlag = useTypedSelector(
+    (state) => state.flippedCard.cardFlag
+  );
   const [flippedCards, setFlippedCards] = useState(
     Array(cards.length).fill(false)
   );
   const dispatch = useDispatch();
+  const playerArr = Array(players).fill(null);
+  const onePlayerWinModalData = new Map([
+    ["Time Elapsed", `${minutes}:${seconds}`],
+    ["Moves Taken", `Moves ${onePlayerScore}`],
+  ]);
   const handleRestart = () => {
-    dispatch(resetScore(0));
+    setCurrentPlayer(1);
+    playerArr.forEach((_, i) => dispatch(resetScore(i)));
     setFlippedCards(Array(cards.length).fill(false));
+    dispatch(resetSelectedCard());
     dispatch(resetTimer());
+    //dispatch(isModalOpen(false));
   };
+
   useEffect(() => {
     dispatch(resetTimer());
   }, []);
-
-  const handleCardClick = (index: number) => {
-    // Если карточка уже открыта, ничего не делаем
-
-    // Открываем карточку
-    setFlippedCards((prevFlippedCards) =>
-      prevFlippedCards.map((isFlipped, i) => (i === index ? true : isFlipped))
-    );
-    dispatch(flippedCard(cards[index]));
-    const lastCard = flippedCardValues.at(-1);
-    const firstCard = flippedCardValues.at(-2);
-    if (lastCard === firstCard && flippedCardValues.length >= 2) {
-      dispatch(addScore(1));
+  useEffect(() => {
+    if (flippedCards.every((card) => card === true)) {
+      dispatch(isModalOpen(true));
     }
-    if (
-      lastCard !== firstCard &&
-      flippedCardValues.length >= 2 &&
-      flippedCardValues.length % 2 === 0
-    ) {
-      setTimeout(() => {
-        setFlippedCards((prevCards) => {
-          const updatedCards = [...prevCards];
+  }, [flippedCards, dispatch]);
+  const handleCardClick = (index: number, e: any) => {
+    // Проверяем, если карточка уже перевернута
+    if (flippedCards[index] || selectedCards.includes(index)) {
+      return;
+    }
+    // Переворачиваем карточку при клике
+    setFlippedCards((prevFlippedCards) => {
+      const newFlippedCards = [...prevFlippedCards];
+      newFlippedCards[index] = true;
+      return newFlippedCards;
+    });
+    dispatch(addSelectedCard(index));
+    if (selectedCards.length === 1) {
+      const firstCardIndex: any = selectedCards[0];
+      const secondCardIndex = index;
+      if (cards[firstCardIndex] === cards[secondCardIndex]) {
+        dispatch(addScore(currentPlayer - 1));
+        setMatchedCards((prevMatchedCards) => [
+          ...prevMatchedCards,
+          firstCardIndex,
+          secondCardIndex,
+        ]);
+      } else {
+        playerArr.length > currentPlayer
+          ? setCurrentPlayer(currentPlayer + 1)
+          : setCurrentPlayer(1);
 
-          const lastFlippedCardIndex = cards.findIndex(
-            (card) => card === lastCard
-          );
-          const firstFlippedCardIndex = cards.findIndex(
-            (card) => card === firstCard
-          );
-          updatedCards[lastFlippedCardIndex] = false;
-          updatedCards[firstFlippedCardIndex] = false;
-          return updatedCards;
-        });
-      }, 0);
+        setTimeout(() => {
+          setFlippedCards((prevFlippedCards) => {
+            const newFlippedCards = [...prevFlippedCards];
+            newFlippedCards[firstCardIndex] = false;
+            newFlippedCards[secondCardIndex] = false;
+            return newFlippedCards;
+          });
+        }, 1000);
+      }
+      dispatch(resetSelectedCard());
     }
   };
-
   return (
     <>
       <Header handleRestart={handleRestart} />
@@ -74,10 +107,20 @@ export default function Memory() {
           cards={cards}
           flippedCards={flippedCards}
           handleCardClick={handleCardClick}
+          matchedCards={matchedCards}
         />
-        <MemoryTimer />
-        <MemoryAttempts attempts={score[0]} />
       </div>
+      <Players currentPlayer={currentPlayer} />
+      {isModalOpenFlag && (
+        <Modal>
+          <ModalData
+            title="You did it!"
+            description="Game over! Here’s how you got on…"
+            content={onePlayerWinModalData}
+            handleRestart={handleRestart}
+          />
+        </Modal>
+      )}
     </>
   );
 }

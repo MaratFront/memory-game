@@ -1,11 +1,10 @@
 * {
-  perspective: 1000px;
   font-family: "Roboto";
 }
 .memory-header {
   display: flex;
   justify-content: space-between;
-  margin: 24px auto 80px;
+  margin: 37px auto 157px;
   width: 327px;
   &__title {
     color: #152938;
@@ -29,29 +28,50 @@
     display: none;
   }
 }
+.players {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}
 .memory-section {
   display: flex;
   margin: auto;
   gap: 12px;
   width: 327px;
   flex-wrap: wrap;
+  margin-bottom: 102px;
   .memory-item {
+    &__grey {
+      background: grey;
+      cursor: pointer;
+      border-radius: 60px;
+      width: 72px;
+      height: 72px;
+      border: none;
+      display: flex;
+      text-align: center;
+      font-size: 40px;
+      align-items: center;
+      justify-content: center;
+      transition: 1s;
+      font-weight: bold;
+    }
     cursor: pointer;
     border-radius: 60px;
     width: 72px;
     height: 72px;
     border: none;
     display: flex;
-    background-color: #304859;
     text-align: center;
     font-size: 40px;
     align-items: center;
     justify-content: center;
     transition: 1s;
     font-weight: bold;
+    background-color: #ffb84a !important;
   }
   .memory-item__active {
-    background-color: #bcced9;
+    background-color: #304859 !important;
     transform-style: preserve-3d;
     transform: rotateX(180deg);
   }
@@ -61,8 +81,24 @@
   margin: auto;
   gap: 9px;
   width: 327px;
+  margin-bottom: 102px;
   flex-wrap: wrap;
   .memory-item {
+    &__grey {
+      cursor: pointer;
+      border-radius: 60px;
+      width: 46px;
+      font-size: 40px;
+      font-weight: bold;
+      height: 46px;
+      border: none;
+      display: flex;
+      background-color: #bcced9;
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+      transition: 1s;
+    }
     cursor: pointer;
     border-radius: 60px;
     width: 46px;
@@ -127,13 +163,17 @@
   }
 
   .memory-section {
-    margin-bottom: 157px;
+    margin-bottom: 127px;
     width: 532px;
     gap: 20px;
     .memory-item {
       width: 118px;
       height: 118px;
       font-size: 40px;
+      &__grey {
+        width: 118px;
+        height: 118px;
+      }
     }
   }
   .memory-section__6x6 {
@@ -143,6 +183,10 @@
     .memory-item {
       width: 82px;
       height: 82px;
+      &__grey {
+        width: 82px;
+        height: 82px;
+      }
     }
     .memory-item__active {
       font-size: 40px;

@@ -1,7 +1,7 @@
 import React from "react";
 import "./button.css";
 interface IButton extends React.BaseHTMLAttributes<HTMLButtonElement> {
-  handleClick: (item?: any) => any;
+  handleClick: () => void;
   text: string | number;
   style?: React.CSSProperties;
   className?: string;
