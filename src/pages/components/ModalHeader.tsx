@@ -15,11 +15,12 @@ export default function ModalHeader({ title, description }: IModalHeader) {
     .map((score, index) => ({ index, score }))
     .sort((a, b) => b.score - a.score); // Сортировка по убыванию очков
   const winnerIndex = sortedPlayers[0].index + 1;
+  console.log();
   return (
     <>
       {modalType !== "menu" && (
         <h1 className="modal__title">
-          {sortedPlayers[0].score !== sortedPlayers[1].score
+          {sortedPlayers[0]?.score !== sortedPlayers[1]?.score
             ? "Player " + winnerIndex + " Wins!"
             : title}
         </h1>
