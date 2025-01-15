@@ -1,26 +1,35 @@
 import React from "react";
 import "../MemoryAttempts/attempts.css";
-interface IAttempts {
-  title: string;
-  attempts: number;
-  currentPlayer?: number;
-  players?: number;
-}
+import "../MemoryAttempts/currentPlayer.css";
+import IAttempts from "../../../Interfaces/IAttempts";
 export default function MemoryAttempts({
   title,
   attempts,
   currentPlayer,
   players,
 }: IAttempts) {
-  console.log(currentPlayer, attempts);
+  const currentPlayerCondition = currentPlayer === players && title !== "Moves";
+  const textColorCondition = currentPlayerCondition ? "white" : "";
+  const bgColorCondition = currentPlayerCondition ? "#FDA214" : "";
+  const attemptsClassName = title === "Moves" ? "attempts-one" : "attempts";
   return (
     <div className="currrent-player">
-      <div className={title === "Moves" ? "attempts-one" : "attempts"}>
-        <p className={"attempts__title"}>{title}</p>
-        <p className="attempts__value">{attempts}</p>
+      <div
+        className={attemptsClassName}
+        style={{
+          backgroundColor: bgColorCondition,
+        }}
+      >
+        {currentPlayerCondition && <div className="triangle"></div>}
+        <p className={"attempts__title"} style={{ color: textColorCondition }}>
+          {title}
+        </p>
+        <p className="attempts__value" style={{ color: textColorCondition }}>
+          {attempts}
+        </p>
       </div>
-      {currentPlayer === players && title !== "Moves" && (
-        <p className="current-player__title">currentPlayer</p>
+      {currentPlayerCondition && (
+        <p className="current-player__title">CURRENT TURN</p>
       )}
     </div>
   );

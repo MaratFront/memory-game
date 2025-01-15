@@ -10,6 +10,29 @@
   justify-content: center;
   align-items: center;
 }
+.modal__buttons {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.modal__restart-game {
+  width: 279px !important;
+  height: 48px !important;
+  background-color: #fda214 !important;
+  margin-top: 24px !important;
+  font-size: 16px !important;
+}
+.modal__new-game {
+  width: 279px !important;
+  height: 48px !important;
+  background-color: #dfe7ec !important;
+  color: #304859 !important;
+  margin: 16px 0 0 !important;
+  font-size: 16px !important;
+}
+.modal__new-game:last-child {
+  margin: 16px 0 24px !important;
+}
 .modal__content {
   background-color: #fff;
   border-radius: 10px;
@@ -52,4 +75,67 @@
   font-size: 20px;
   font-weight: bold;
   color: #304859;
+}
+.modal__item--active {
+  background-color: black !important;
+  width: 279px;
+  padding: 16px;
+  border-radius: 5px;
+  border: none;
+  display: flex;
+  margin: 0 auto;
+  justify-content: space-between;
+  gap: 9px;
+}
+
+@media (min-width: 768px) {
+  .modal__container {
+    gap: 16px;
+  }
+  .modal__restart-game {
+    width: 264px !important;
+    height: 52px !important;
+    margin-top: 0 !important;
+    font-size: 20px !important;
+  }
+  .modal__new-game {
+    width: 264px !important;
+    height: 52px !important;
+    background-color: #dfe7ec !important;
+    font-size: 20px !important;
+  }
+  .modal__content {
+    width: 654px;
+  }
+  .modal__title {
+    padding: 51px 0 16px;
+    font-size: 48px;
+  }
+  .modal__description {
+    padding-bottom: 40px;
+    font-size: 18px;
+  }
+  .modal__item {
+    width: 542px;
+    height: 72px;
+  }
+  .modal__item--value {
+    font-size: 32px;
+  }
+  .modal__item--key {
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+  }
+  .modal__item--active {
+    width: 542px;
+    height: 72px;
+  }
+  .modal__buttons {
+    display: flex;
+    flex-direction: row;
+    margin: 40px 0 69px;
+    justify-content: center;
+    gap: 14px;
+  }
 }/*# sourceMappingURL=Modal.css.map */

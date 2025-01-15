@@ -1,0 +1,28 @@
+.triangle {
+  transform: translate(0, -41px);
+  height: 0;
+  border-left: 13px solid transparent;
+  border-right: 13px solid transparent;
+  border-bottom: 12.5px solid #fda214;
+  position: absolute;
+}
+@media (min-width: 768px) {
+  .triangle {
+    transform: translate(0, -44px);
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 12.5px solid #fda214;
+    position: absolute;
+  }
+}
+@media (min-width: 1440px) {
+  .triangle {
+    transform: translate(0, -42px);
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 12.5px solid #fda214;
+    position: absolute;
+  }
+}

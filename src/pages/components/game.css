@@ -5,7 +5,7 @@
 .memory-header {
   display: flex;
   justify-content: space-between;
-  margin: 37px auto 157px;
+  margin: 37px auto 80px;
   width: 327px;
 }
 .memory-header__title {
@@ -60,7 +60,7 @@
   background-color: #ffb84a !important;
 }
 .memory-section .memory-item__grey {
-  background: grey;
+  background: #bcced9;
   cursor: pointer;
   border-radius: 60px;
   width: 72px;
@@ -72,6 +72,7 @@
   align-items: center;
   justify-content: center;
   transition: 1s;
+  color: white;
   font-weight: bold;
 }
 .memory-section .memory-item__active {
@@ -105,6 +106,7 @@
 }
 .memory-section__6x6 .memory-item__grey {
   cursor: pointer;
+  color: white;
   border-radius: 60px;
   width: 46px;
   font-size: 40px;
@@ -136,37 +138,33 @@
     font-size: 40px;
     font-weight: bold;
   }
-  .memory-header__button:nth-child(2) {
+  .memory-header .button:nth-child(2) {
     background-color: #dfe7ec;
     color: #304859;
     width: 149px;
-    transition: 1s;
-    font-weight: bold;
+    font-size: 20px;
     border-radius: 30px;
-    height: 52;
   }
-  .memory-header__button:nth-child(2):hover {
+  .memory-header .button:nth-child(2):hover {
     color: #fcfcfc;
     background-color: #304859;
     width: 149px;
-    transition: 1s;
   }
-  .memory-header__button:nth-child(1) {
+  .memory-header .button:nth-child(1) {
     width: 127px;
     border-radius: 30px;
-    font-weight: bold;
     background-color: #fda214;
-    transition: 1s;
+    color: white;
+    font-size: 20px;
   }
-  .memory-header__button:nth-child(1):hover {
+  .memory-header .button:nth-child(1):hover {
     background-color: #ffb84a;
-    transition: 1s;
   }
   .menu-button {
     display: none;
   }
   .memory-section {
-    margin-bottom: 127px;
+    margin-bottom: 60px;
     width: 532px;
     gap: 20px;
   }
@@ -180,7 +178,7 @@
     height: 118px;
   }
   .memory-section__6x6 {
-    margin-top: 121px;
+    margin-top: 60px;
     width: 572px;
     gap: 16px;
   }
@@ -203,9 +201,9 @@
     width: 1110px;
   }
   .memory-section {
-    margin-bottom: 157px;
+    margin-bottom: 73px;
   }
   .memory-section__6x6 {
-    margin-top: 85px;
+    margin-top: 42px;
   }
 }/*# sourceMappingURL=game.css.map */

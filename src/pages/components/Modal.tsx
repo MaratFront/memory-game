@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import "./Modal.css";
-
+import { useDispatch } from "react-redux";
+import { isModalOpen } from "../../Store/Slices/modalFlag";
 const modalRootElement = document.querySelector("#modal");
 
 interface IModal {
@@ -8,6 +9,7 @@ interface IModal {
 }
 
 export default function Modal({ children }: IModal) {
+  const dispatch = useDispatch();
   const elementRef = useRef(document.createElement("div"));
 
   useEffect(() => {
@@ -23,7 +25,7 @@ export default function Modal({ children }: IModal) {
   }, []);
 
   return (
-    <div ref={elementRef} className="modal">
+    <div className="modal" onClick={() => dispatch(isModalOpen([false, ""]))}>
       <div className="modal__content">{children}</div>
     </div>
   );
