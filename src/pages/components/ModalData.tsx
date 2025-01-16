@@ -1,6 +1,7 @@
 import ModalHeader from "./ModalHeader";
 import ModalContainer from "./ModalContainer";
 import ModalButtons from "./ModalButtons";
+import IModalData from "../../Interfaces/IModalData";
 export default function ModalData({
   title,
   description,
