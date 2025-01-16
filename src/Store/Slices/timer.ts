@@ -11,15 +11,14 @@ const timerSlice = createSlice({
   reducers: {
     tick: (state) => {
       state.seconds += 1;
-
       if (state.seconds === 60) {
         state.seconds = 0;
         state.minutes += 1;
       }
     },
     resetTimer: (state) => {
-      state.seconds = 0;
       state.minutes = 0;
+      state.seconds = 0;
     },
   },
 });

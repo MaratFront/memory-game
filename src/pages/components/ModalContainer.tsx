@@ -1,19 +1,13 @@
 import React from "react";
 import { useTypedSelector } from "../../customHooks/TypedUseSelector";
-
+import useSortedPlayers from "../../utils/sortedPlayers";
 interface IModalData {
   content?: Map<string, string | number>;
 }
-
 export default function ModalContainer({ content }: IModalData) {
   const modalType = useTypedSelector((state) => state.modalFlag.modalType);
   const players = useTypedSelector((state) => state.settingsCard.countGamers);
-  const playerScore = useTypedSelector((state) => state.playerScore);
-  // Ограничиваем количество игроков до `players` и сортируем их по очкам
-  const sortedPlayers = playerScore
-    .slice(0, players) // Берем только первых `players` игроков
-    .map((score, index) => ({ index, score }))
-    .sort((a, b) => b.score - a.score); // Сортировка по убыванию очков
+  const sortedPlayers = useSortedPlayers();
   const winnerScore = sortedPlayers[0].score;
   return (
     <>

@@ -21,7 +21,6 @@ export default function StartGame() {
   const cardsSettings = useTypedSelector((state) => state.settingsCard);
   const dispatch = useDispatch();
   const handleStartGame = () => {
-    //any завтра уберу и напишу типизацию!
     const cardGenerators: any = {
       Icons: {
         "6x6": randomArrEmoji6x6,

@@ -1,21 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "../../../UI/Button";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { UnknownAction } from "@reduxjs/toolkit";
-interface ISection {
-  title: string;
-  arrButtons: string[] | number[];
-  action: (item: string | number) => UnknownAction;
-}
+import ISection from "../../../Interfaces/ISection";
 export default function StartSection({ title, arrButtons, action }: ISection) {
   const [activeButtons, setActiveButtons] = useState<string | number>();
+
   const dispatch = useDispatch();
   const handleActiveColorItems = (item: string | number) => {
     setActiveButtons(item);
     dispatch(action(item));
   };
-
+  useEffect(() => {
+    Object.values(arrButtons)
+      .reverse()
+      .forEach((item) => {
+        setActiveButtons(item);
+      });
+  }, []);
   return (
     <>
       <p className="start__text">{title}</p>
