@@ -1,6 +1,7 @@
 import { UnknownAction } from "@reduxjs/toolkit";
-export default interface ISection {
+interface ISection {
   title: string;
   arrButtons: string[] | number[];
   action: (item: string | number) => UnknownAction;
 }
+export default ISection;

@@ -1,4 +1,5 @@
-export default interface IModalHeader {
+interface IModalHeader {
   title?: string;
   description?: string;
 }
+export default IModalHeader;
