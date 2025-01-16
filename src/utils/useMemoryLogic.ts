@@ -12,6 +12,7 @@ import useFlippedCards from "../customHooks/useFlippedCards";
 import useMatchedCards from "./matchedCards";
 import { resetTimer } from "../Store/Slices/timer";
 import useConditionMatchedCards from "./useConditionMatchedCards";
+import handleReload from "./gameReload";
 export default function useMemoryLogic() {
   const { cards, flippedCards, updateFlippedCards, resetFlippedCards } =
     useFlippedCards();
@@ -25,6 +26,13 @@ export default function useMemoryLogic() {
   const isModalOpenFlag = useTypedSelector(
     (state) => state.modalFlag.modalFlag
   );
+  useEffect(() => {
+    window.addEventListener("load", handleReload);
+    return () => {
+      window.removeEventListener("load", handleReload);
+    };
+  }, []);
+
   const { seconds, minutes } = useTypedSelector((state: any) => state.timer);
   const onePlayerScore = useTypedSelector((state) => state.playerScore[0]);
   const [currentPlayer, setCurrentPlayer] = useState(1);
