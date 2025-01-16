@@ -48,11 +48,8 @@ export default function useMemoryLogic() {
     conditionCardsEffect(matchedCards);
   }, [flippedCards]);
   useEffect(() => {
-    dispatch(resetTimer());
-  }, []);
-  useEffect(() => {
     if (flippedCards.every((card) => card === true)) {
-      dispatch(isModalOpen([true, "onePlalerWinner"]));
+      dispatch(isModalOpen([true, "onePlayerWinner"]));
     }
   }, [flippedCards, dispatch]);
   const handleCardClick = (index: number) => {

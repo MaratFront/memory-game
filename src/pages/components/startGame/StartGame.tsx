@@ -42,7 +42,7 @@ export default function StartGame() {
   };
   const sectionArr = [
     {
-      titles: ["Select Theme", "Number of PLayers", "Grid Size"],
+      titles: ["Select Theme", "Number of Players", "Grid Size"],
       selectData: [
         ["Numbers", "Icons"],
         [1, 2, 3, 4],
