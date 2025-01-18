@@ -58,7 +58,7 @@
   justify-content: center;
   transition: 1s;
   font-weight: bold;
-  background-color: #ffb84a !important;
+  background-color: #fda214 !important;
 }
 .memory-section .memory-item__grey {
   background: #bcced9;
@@ -99,9 +99,10 @@
   height: 46px;
   border: none;
   display: flex;
-  background-color: #304859;
+  background-color: #fda214;
   text-align: center;
   align-items: center;
+  color: white;
   justify-content: center;
   transition: 1s;
 }
@@ -122,7 +123,7 @@
   transition: 1s;
 }
 .memory-section__6x6 .memory-item__active {
-  background-color: #bcced9;
+  background-color: #304859;
   transform-style: preserve-3d;
   transform: rotateX(180deg);
 }
